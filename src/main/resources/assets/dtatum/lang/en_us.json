@@ -1,0 +1,11 @@
+{
+  "item.dtatum.palm_seed":"Date Seed",
+
+  "species.dtatum.palm":"Palm",
+  "species.dtatum.dead_palm":"Dead Palm",
+  "species.dtatum.deadwood":"Deadwood",
+
+  "block.dtatum.palm_branch":"Palm",
+  "block.dtatum.dead_palm_branch":"Dead Palm",
+  "block.dtatum.deadwood_branch":"Deadwood Tree"
+}

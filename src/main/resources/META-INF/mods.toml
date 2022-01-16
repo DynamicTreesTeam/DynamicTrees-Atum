@@ -1,0 +1,50 @@
+modLoader="javafml"
+loaderVersion="[36,37)"
+license="MIT"
+
+[[mods]]
+modId="dtatum"
+version="${file.jarVersion}"
+
+displayName="Dynamic Trees for Atum 2"
+updateJSONURL="https://github.com/supermassimo/DynamicTrees-ExC/blob/1.12.2/.DONE/DynamicTrees-Atum/version_info.json?raw=true" #optional
+displayURL="https://www.curseforge.com/minecraft/mc-mods/dynamic-trees-atum-2" #optional
+authors="Max Hyper" #optional
+description='''
+Compatibility Mod between Dynamic trees and Atum 2
+'''
+
+[[dependencies.dtatum]]
+    modId="forge"
+    mandatory=true
+    versionRange="[36.2.20,37)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.dtatum]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.5,1.17)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.dtatum]]
+    modId="dynamictrees"
+    mandatory=true
+    versionRange="[0.10.0-Beta14,)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.dtatum]]
+    modId="dynamictreesplus"
+    mandatory=false
+    versionRange="[0.1.0,)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.dtatum]]
+    modId="atum"
+    mandatory=true
+    versionRange="[1.16.5-2.2.0,)"
+    ordering="AFTER"
+    side="BOTH"
