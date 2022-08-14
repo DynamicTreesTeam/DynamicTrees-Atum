@@ -5,7 +5,7 @@
   "signal_energy": 10.0,
   "growth_rate": 0.0,
   "soil_longevity": 8,
-  "leaves_properties": "dtatum:bare",
+  "leaves_properties": "dynamictrees:bare",
   "generate_seed": false,
   "generate_sapling": false,
   "can_bone_meal_tree": false,

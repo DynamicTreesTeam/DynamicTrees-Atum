@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "dtatum:deadwood_branch",
+    "dtatum:dead_palm_branch",
+    "dtatum:palm_branch"
+  ]
+}
