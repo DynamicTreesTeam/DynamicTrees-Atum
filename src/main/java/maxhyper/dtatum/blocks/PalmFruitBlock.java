@@ -6,64 +6,42 @@ import com.ferreusveritas.dynamictrees.blocks.leaves.DynamicLeavesBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.state.DirectionProperty;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
-
-import static com.ferreusveritas.dynamictrees.util.ShapeUtils.createFruitShape;
 
 public class PalmFruitBlock extends FruitBlock {
 
-    public static final DirectionProperty FACING = DirectionProperty.create("facing", Direction.Plane.HORIZONTAL);
+    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-    protected final float[] DATE_OFFSET = {6 /16f, 6 /16f, 6 /16f, 6 /16f};
+    private final PalmFruit palmFruit;
+
+    public PalmFruitBlock(Properties properties, PalmFruit fruit) {
+        super(properties, fruit);
+        this.palmFruit = fruit;
+    }
 
     protected void createBlockStateDefinition(net.minecraft.state.StateContainer.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(FACING);
     }
 
-    public BlockState getStateForAgeAndDir(int age, Direction direction) {
-        return getStateForAge(age).setValue(FACING, direction);
-    }
-
     @Override
-    protected int fruitDropCount(BlockState state, World world, BlockPos pos) {
-        return 2 + world.getRandom().nextInt(4);
-    }
-
-    @Override
-    public boolean shouldBlockDrop(IBlockReader world, BlockPos pos, BlockState state) {
+    public boolean isSupported(IBlockReader world, BlockPos pos, BlockState state) {
         Direction dir = state.getValue(FACING);
-        BlockState offsetState = world.getBlockState(pos.offset(dir.getNormal()));
-        BlockState offsetUpState = world.getBlockState(pos.offset(dir.getNormal()).above());
-        return !(offsetState.getBlock() instanceof BranchBlock && offsetUpState.getBlock() instanceof DynamicLeavesBlock);
-    }
-
-    protected AxisAlignedBB[] DATE_AABB = new AxisAlignedBB[] {
-            createFruitShape(1,1,1, 16),
-            createFruitShape(3,8,7, 16),
-            createFruitShape(3.5f,10,6, 16),
-            createFruitShape(3.5f,10,6, 16)
-    };
-
-    @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        Direction direction = state.getValue(FACING);
-        return VoxelShapes.create(offsetBoundingBox(DATE_AABB[state.getValue(AGE)], direction, DATE_OFFSET[state.getValue(AGE)]));
-    }
-
-    protected AxisAlignedBB offsetBoundingBox (AxisAlignedBB box, Direction dir, float offset){
-        return box.move(dir.getStepX() * offset, dir.getStepY() * offset, dir.getStepZ() * offset);
+        BlockState stateFacing = world.getBlockState(pos.offset(dir.getNormal()));
+        BlockState stateAbove = world.getBlockState(pos.offset(dir.getNormal()).above());
+        return stateFacing.getBlock() instanceof BranchBlock && stateAbove.getBlock() instanceof DynamicLeavesBlock;
     }
 
     @Override
-    public VoxelShape getCollisionShape(BlockState p_220071_1_, IBlockReader p_220071_2_, BlockPos p_220071_3_, ISelectionContext p_220071_4_) {
-        return VoxelShapes.empty();
+    public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context) {
+        final int age = getAge(state);
+        final Direction facing = state.getValue(FACING);
+        return palmFruit.getBlockShape(age, facing);
     }
+
 }

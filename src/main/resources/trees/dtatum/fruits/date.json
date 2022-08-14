@@ -1,0 +1,12 @@
+{
+  "type": "dtatum:palm",
+  "_todo": "Remove block registry name in 1.18 so it is called `dtatum:date`.",
+  "block_registry_name": "date_fruit",
+  "item_stack": "atum:date",
+  "block_shapes": [
+    { "function": "fruit", "parameters": { "radius": 1, "height": 1, "stem_length": 1, "fraction": 16 } },
+    { "function": "fruit", "parameters": { "radius": 3, "height": 8, "stem_length": 7, "fraction": 16 } },
+    { "function": "fruit", "parameters": { "radius": 3.5, "height": 10, "stem_length": 6, "fraction": 16 } },
+    { "function": "fruit", "parameters": { "radius": 3.5, "height": 10, "stem_length": 6, "fraction": 16 } }
+  ]
+}

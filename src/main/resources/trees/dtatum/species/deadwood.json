@@ -9,7 +9,7 @@
   "generate_seed": false,
   "generate_sapling": false,
   "can_bone_meal_tree": false,
-  "drop_creators": [
+  "_drop_creators": [
     "log",
     "stick"
   ],

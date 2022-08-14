@@ -10,7 +10,7 @@
     "hot": 1.1,
     "dry": 1.1
   },
-  "drop_creators": [
+  "_drop_creators": [
     "log",
     {
       "name": "fruit",
@@ -22,8 +22,16 @@
   "transformable": false,
   "perfect_biomes": { "name": "atum:oasis" },
   "primitive_sapling": "atum:palm_sapling",
+  "fruits": [
+    "dtatum:date"
+  ],
   "features": [
-    "dtatum:palm_fruit",
+    {
+      "name": "dtatum:palm_fruit",
+      "properties": {
+        "fruit": "dtatum:date"
+      }
+    },
     "dtatum:palm_vines"
   ]
 }
