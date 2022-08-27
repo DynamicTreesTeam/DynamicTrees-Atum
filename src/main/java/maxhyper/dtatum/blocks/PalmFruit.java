@@ -3,8 +3,18 @@ package maxhyper.dtatum.blocks;
 import com.ferreusveritas.dynamictrees.api.registry.TypedRegistry;
 import com.ferreusveritas.dynamictrees.blocks.FruitBlock;
 import com.ferreusveritas.dynamictrees.systems.fruit.Fruit;
+import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
+import net.minecraft.loot.ConstantRange;
+import net.minecraft.loot.ItemLootEntry;
+import net.minecraft.loot.LootParameterSets;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTable;
+import net.minecraft.loot.RandomValueRange;
+import net.minecraft.loot.conditions.BlockStateProperty;
+import net.minecraft.loot.functions.ExplosionDecay;
+import net.minecraft.loot.functions.SetCount;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -60,6 +70,24 @@ public final class PalmFruit extends Fruit {
 
     private BlockState getState(int age, Direction facing) {
         return getStateForAge(age).setValue(PalmFruitBlock.FACING, facing);
+    }
+
+    @Override
+    public LootTable.Builder createBlockDrops() {
+        return LootTable.lootTable().withPool(
+                LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(
+                        ItemLootEntry.lootTableItem(getItemStack().getItem())
+                                .when(
+                                        BlockStateProperty.hasBlockStateProperties(getBlock())
+                                                .setProperties(
+                                                        StatePropertiesPredicate.Builder.properties()
+                                                                .hasProperty(getAgeProperty(), getMaxAge())
+                                                )
+                                )
+                                .apply(SetCount.setCount(RandomValueRange.between(2.0F, 5.0F)))
+                                .apply(ExplosionDecay.explosionDecay())
+                )
+        ).setParamSet(LootParameterSets.BLOCK);
     }
 
 }

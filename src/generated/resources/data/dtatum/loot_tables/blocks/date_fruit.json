@@ -23,16 +23,14 @@
                 "max": 5.0,
                 "type": "minecraft:uniform"
               }
+            },
+            {
+              "function": "minecraft:explosion_decay"
             }
           ],
           "name": "atum:date"
         }
       ]
-    }
-  ],
-  "functions": [
-    {
-      "function": "minecraft:explosion_decay"
     }
   ]
 }
