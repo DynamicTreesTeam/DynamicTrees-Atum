@@ -5,11 +5,10 @@ license="MIT"
 [[mods]]
 modId="dtatum"
 version="${file.jarVersion}"
-
 displayName="Dynamic Trees for Atum 2"
-updateJSONURL="https://github.com/supermassimo/DynamicTrees-ExC/blob/1.12.2/.DONE/DynamicTrees-Atum/version_info.json?raw=true" #optional
-displayURL="https://www.curseforge.com/minecraft/mc-mods/dynamic-trees-atum-2" #optional
-authors="Max Hyper" #optional
+updateJSONURL="https://github.com/DynamicTreesTeam/DynamicTreesVersionInfo/blob/master/Add-ons/Atum2.json?raw=true"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/dynamic-trees-atum-2"
+authors="Max Hyper"
 description='''
 Compatibility Mod between Dynamic trees and Atum 2
 '''
@@ -31,7 +30,7 @@ Compatibility Mod between Dynamic trees and Atum 2
 [[dependencies.dtatum]]
     modId="dynamictrees"
     mandatory=true
-    versionRange="[0.10.0-Beta14,)"
+    versionRange="[0.10.0-Beta34,)"
     ordering="AFTER"
     side="BOTH"
 
